@@ -88,7 +88,7 @@ graph2 <- ggplot(pmf.data, aes(x = sup, y = pmf)) +
         text = element_text(size = 15))
 graph2
 
-# Create CDF layer # Normal aproximation
+# Create PDF layer # Normal aproximation
 pdf.normal <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   dnorm(x, mean = mean, sd = sd)
 }
@@ -96,7 +96,7 @@ pdf.plot.normal <- stat_function(fun = pdf.normal, color = colors[2])
 graph2 <- graph2 + pdf.plot.normal
 graph2
 
-# Create CDF layer # Normal aproximation < x
+# Create PDF layer # Normal aproximation < x
 pdf.normal.correction <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   dnorm(x - 0.5, mean = mean, sd = sd)
 }
@@ -104,7 +104,7 @@ pdf.plot.normal.correction <- stat_function(fun = pdf.normal.correction, color =
 graph2 <- graph2 + pdf.plot.normal.correction
 graph2
 
-# Create CDF layer # Normal aproximation <= x
+# Create PDF layer # Normal aproximation <= x
 pdf.normal.correction.2 <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   dnorm(x + 0.5, mean = mean, sd = sd)
 }
@@ -139,5 +139,3 @@ aprox.data.2 <- data.frame(
 )
 names(aprox.data.2) <- c('x', 'P(X<=x)', 'P(N<=x)', 'Err P(N<=x)', 'P(N<=x+0.5)', 'Err P(N<x+0.5)')
 aprox.data.2
-
-

@@ -1,5 +1,4 @@
-library(ggplot)
-
+library(ggplot2)
 
 # n: Number of trials
 n <- 30
