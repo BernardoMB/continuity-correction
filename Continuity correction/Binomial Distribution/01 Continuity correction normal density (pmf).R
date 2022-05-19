@@ -18,13 +18,14 @@ graph <- ggplot(data, aes(x = sup, y = pmf)) +
                      limits = c(0, n)) +
   scale_y_continuous(name="Probability\n",
                      limits = c(0.0,0.15)) +
-  ggtitle("PMF for discrete random variable X\n") +
+  ggtitle("Normal approximation to \n PMF for discrete random variable X (Binomial)") +
+  ggtitle(paste(paste(paste("Normal approximation to \n PMF for binomial random variable n=", n, sep="")," p=", sep=""), p, sep="")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         text = element_text(size = 15))
 graph
 
-# Create CDF layer # Normal aproximation
+# Create CDF layer # Normal aproximation (no correction)
 pdf.normal <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   dnorm(x, mean = mean, sd = sd)
 }
@@ -32,7 +33,7 @@ pdf.plot.normal <- stat_function(fun = pdf.normal, color = 'blue')
 graph <- graph + pdf.plot.normal
 graph
 
-# Create CDF layer # Normal aproximation
+# Create CDF layer # Normal aproximation (with correction)
 pdf.normal.correction <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   dnorm(x - 0.5, mean = mean, sd = sd)
 }

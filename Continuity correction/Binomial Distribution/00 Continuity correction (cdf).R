@@ -38,7 +38,7 @@ labels <- labs(x = 'x', y = 'F(x) : Binomial CDF')
 graph <- graph + labels
 graph
 
-# Create CDF layer # Normal aproximation
+# Create CDF layer # Normal aproximation (no correction)
 cdf.normal <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   pnorm(x, mean = mean, sd = sd)
 }
@@ -46,7 +46,7 @@ cdf.plot.normal <- stat_function(fun = cdf.normal, color = 'blue')
 graph <- graph + cdf.plot.normal
 graph
 
-# Create CDF layer # Normal aproximation
+# Create CDF layer # Normal aproximation (with continuity correction)
 cdf.normal.correction <- function(x, mean = n*p, sd = sqrt(n*p*(1-p))) {
   pnorm(x - 0.5, mean = mean, sd = sd)
 }
